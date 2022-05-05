@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+//Packages
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+//Pages
+import Home from "./pages/Home";
+import Offer from "./pages/Offer";
+import Header from "./pages/Header";
+
+//CSS
+import "./App.css";
+import "./sass/header.scss";
+import "./sass/global.scss";
+import "./sass/home.scss";
+import "./sass/offer.scss";
+
+//FontAwesome
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+library.add(faMagnifyingGlass);
 
 function App() {
-  return (
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://lereacteur-vinted-api.herokuapp.com/offers"
+        );
+        console.log(response.data);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {}
+    };
+    fetchData();
+  }, []);
+
+  return isLoading ? (
+    <p>En cours de chargement....</p>
+  ) : (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header {...library} />
+        <Routes>
+          <Route path="/" element={<Home offers={data.offers} />} />
+          <Route path="offer/:id" element={<Offer />}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }

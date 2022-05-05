@@ -1,0 +1,57 @@
+/* Hero */
+.home-hero-img {
+  background-image: url(https://lereacteur-vinted.netlify.app/static/media/hero.09bfd0f9.jpg);
+  height: 500px;
+  width: 100%;
+  background-size: cover;
+
+  .container {
+    border: solid 1px red;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .home-hero-img-card {
+    height: 220px;
+    width: 360px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 5px;
+    font-size: 2rem;
+    border: 2px red solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    span {
+      line-height: 40px;
+    }
+
+    button {
+      width: 190px;
+      height: 50px;
+      margin-top: 30px;
+    }
+  }
+}
+
+.home-offers-wrapper {
+  width: 100%;
+  border: solid red 1px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .home-offers-card {
+    width: calc(100% / 5);
+    height: 460px;
+    border: solid red 1px;
+    padding: 10px 10px;
+    img {
+      height: 60%;
+      width: 100%;
+      object-fit: cover;
+      border: solid honeydew 1px;
+    }
+  }
+}

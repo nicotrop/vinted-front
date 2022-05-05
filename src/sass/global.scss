@@ -1,0 +1,30 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Maison Neue", sans-serif;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+button {
+  padding: 5px 5px;
+  background-color: white;
+  border: 1px solid #2cb1ba;
+  color: #2cb1ba;
+  border-radius: 5px;
+  font-family: "Maison Neue", sans-serif;
+  text-transform: capitalize;
+}
+
+.blue-btn {
+  background-color: #2cb1ba;
+  color: white;
+  min-height: 30px;
+}
