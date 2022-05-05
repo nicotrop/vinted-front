@@ -28,7 +28,9 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <button>se connecter</button>
+            <Link to="signin">
+              <button>se connecter</button>
+            </Link>
           </li>
           <li>
             <button className="blue-btn">vends tes articles</button>

@@ -1,0 +1,14 @@
+.signin {
+  width: 100vw;
+  height: calc(100vh - 80px);
+  .signin-form {
+    height: 500px;
+    width: 500px;
+    border: solid red 1px;
+    padding-bottom: 40px;
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

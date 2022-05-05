@@ -59,7 +59,13 @@ nav {
       button {
         font-size: 12px;
         height: 30px;
-        width: 115px;
+        min-width: 115px;
+      }
+
+      button:hover {
+        background-color: #2cb1ba;
+        color: white;
+        font-weight: 550;
       }
     }
 

@@ -1,4 +1,3 @@
-import { faCode } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
@@ -9,11 +8,9 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsSignup, setNewsSignup] = useState(false);
-  const [body, setBody] = useState({});
   const [token, setToken] = useState("");
 
   const navigate = useNavigate();
-  console.log(Cookies.get(token));
 
   const handleUsernameChange = (event) => {
     const value = event.target.value;
@@ -45,12 +42,10 @@ const Signup = () => {
       newsletter: newsSignup,
     };
 
-    setBody(newBody);
-
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-        body
+        newBody
       );
 
       if (response.data.token) {
@@ -69,37 +64,40 @@ const Signup = () => {
       <div className="container">
         <div className="signup-form">
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="username"
-              value={username}
-              placeholder="Nom d'utilisateur"
-              onChange={handleUsernameChange}
-            />
-            <input
-              type="text"
-              name="email"
-              value={email}
-              placeholder="Email"
-              onChange={handleEmailChange}
-            />
-
-            <input
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Mot de passe"
-              onChange={handlePasswordChange}
-            />
-
-            <input
-              type="checkbox"
-              name="signup to newsletter"
-              value={newsSignup}
-              onChange={handleNewsletter}
-            />
-
-            <input type="submit" value="S'inscrire" />
+            <div className="input-card">
+              <h2>S'inscrire</h2>
+              <input
+                type="text"
+                name="username"
+                value={username}
+                placeholder="Nom d'utilisateur"
+                onChange={handleUsernameChange}
+              />
+              <input
+                type="text"
+                name="email"
+                value={email}
+                placeholder="Email"
+                onChange={handleEmailChange}
+              />
+              <input
+                type="password"
+                name="password"
+                value={password}
+                placeholder="Mot de passe"
+                onChange={handlePasswordChange}
+              />
+              <div className="newsletter-input">
+                <input
+                  type="checkbox"
+                  name="signup to newsletter"
+                  value={newsSignup}
+                  onChange={handleNewsletter}
+                />
+                <span>S'inscrire à notre newsletter</span>
+              </div>
+              <input className="blue-btn" type="submit" value="S'inscrire" />
+            </div>
           </form>
         </div>
       </div>
