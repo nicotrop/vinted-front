@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+// import Cookies from "js-cookie"
 
 //Pages
 import Home from "./pages/Home";
@@ -14,10 +15,12 @@ import "./sass/header.scss";
 import "./sass/global.scss";
 import "./sass/home.scss";
 import "./sass/offer.scss";
+import "./sass/signup.scss";
 
 //FontAwesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import Signup from "./pages/Signup";
 library.add(faMagnifyingGlass);
 
 function App() {
@@ -33,7 +36,9 @@ function App() {
         console.log(response.data);
         setData(response.data);
         setIsLoading(false);
-      } catch (error) {}
+      } catch (error) {
+        alert(error.response);
+      }
     };
     fetchData();
   }, []);
@@ -46,6 +51,7 @@ function App() {
         <Header {...library} />
         <Routes>
           <Route path="/" element={<Home offers={data.offers} />} />
+          <Route path="signup" element={<Signup />} />
           <Route path="offer/:id" element={<Offer />}></Route>
         </Routes>
       </Router>

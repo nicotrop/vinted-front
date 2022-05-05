@@ -47,7 +47,26 @@
     height: 460px;
     border: solid red 1px;
     padding: 10px 10px;
-    img {
+
+    .offer-card-userbox {
+      display: flex;
+      height: 40px;
+      align-items: center;
+      border: red solid 1px;
+      padding: 5px;
+
+      .avatar {
+      height: 30px;
+      width: 30px;
+      min-height: none;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 5px;
+      }
+    }
+
+
+    .product-img {
       height: 60%;
       width: 100%;
       object-fit: cover;

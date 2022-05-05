@@ -3,7 +3,6 @@ import "../sass/home.scss";
 import Offer from "./Offer";
 
 const Home = ({ offers }) => {
-  console.log(offers);
 
   const orderDetails = (tab) => {
     const result = [];
@@ -29,20 +28,25 @@ const Home = ({ offers }) => {
           </div>
         </div>
       </div>
-      <p>Home</p>
       <div>
         <div className="container">
           <div className="home-offers-wrapper">
             {offers.map((offer, index) => {
+              console.log(offer);
               return (
-                <div className="home-offers-card" key={offer._id}>
-                  <p>{offer.owner.account.username}</p>
+                <div className="home-offers-card" key={index}>
+                  <div className="offer-card-userbox">
+                    {offer.owner.account.avatar && <img className="avatar" src={offers[index].owner.account.avatar.secure_url} alt="user-img" />}
+                    <p>{offer.owner.account.username}</p>
+                    
+                  </div>
                   <Link
                     // to="offer"
                     to={`offer/${offer._id}`}
                     element={<Offer />}
                   >
                     <img
+                    className="product-img"
                       src={offer.product_image.secure_url}
                       alt={offer.product_name}
                     />
