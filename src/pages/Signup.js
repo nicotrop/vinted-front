@@ -1,5 +1,8 @@
+import { faCode } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -7,7 +10,10 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [newsSignup, setNewsSignup] = useState(false);
   const [body, setBody] = useState({});
-  //   const [token, setToken] = useState("");
+  const [token, setToken] = useState("");
+
+  const navigate = useNavigate();
+  console.log(Cookies.get(token));
 
   const handleUsernameChange = (event) => {
     const value = event.target.value;
@@ -44,11 +50,17 @@ const Signup = () => {
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-        { body }
+        body
       );
-      console.log(response.data);
+
+      if (response.data.token) {
+        const newToken = response.data.token;
+        Cookies.set("token", newToken);
+        setToken(newToken);
+        navigate("/");
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 

@@ -2,12 +2,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import Cookies from "js-cookie"
 
 //Pages
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Header from "./pages/Header";
+import Signup from "./pages/Signup";
 
 //CSS
 import "./App.css";
@@ -20,7 +20,6 @@ import "./sass/signup.scss";
 //FontAwesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import Signup from "./pages/Signup";
 library.add(faMagnifyingGlass);
 
 function App() {

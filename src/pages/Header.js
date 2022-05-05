@@ -23,7 +23,9 @@ const Header = () => {
         </div>
         <div className="nav-col-3">
           <li>
-            <button>s'inscrire</button>
+            <Link to="signup">
+              <button>s'inscrire</button>
+            </Link>
           </li>
           <li>
             <button>se connecter</button>
