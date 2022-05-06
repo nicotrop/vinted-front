@@ -1,18 +1,14 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+import {useState} from "react";
 
-const Signin = ({
-  username,
-  setUsername,
-  email,
-  setEmail,
-  password,
-  setPassword,
-  token,
-  setToken,
-}) => {
+const Signin = ({setUser}) => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrormsg] = useState("");
+
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -38,40 +34,43 @@ const Signin = ({
         newBody
       );
       if (response.data.token) {
-        setToken(response.data.token);
-        setUsername(response.data.account.username);
-        Cookies.set(token, token, { expires: 1 / 48 });
+        setUser(response.data.token)
         navigate("/");
       }
     } catch (error) {
       console.log(error.response);
+      setErrormsg(error.response.data.message);
+
     }
   };
 
   return (
     <div className="signin">
       <div className="container">
-        <div className="signin-form">
+        <div className="register-form">
           <form onSubmit={handleSubmit}>
-            <h2>Se connecter</h2>
-            <input
-              type="text"
-              name="email"
-              value={email}
-              placeholder="Adresse email"
-              onChange={handleEmailChange}
-            />
-            <input
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Mot de passe"
-              onChange={handlePasswordChange}
-            />
-            <input type="submit" value="Se connecter" />
-            <Link to="/signup">
-              <p>Pas encore de compte? Inscris-toi !</p>
-            </Link>
+            <div className="input-card">
+              <h1>Se connecter</h1>
+              <input
+                type="text"
+                name="email"
+                value={email}
+                placeholder="Adresse email"
+                onChange={handleEmailChange}
+              />
+              <input
+                type="password"
+                name="password"
+                value={password}
+                placeholder="Mot de passe"
+                onChange={handlePasswordChange}
+              />
+              <input className="blue-btn" type="submit" value="Se connecter" />
+              <Link to="/signup">
+                <p>Pas encore de compte? Inscris-toi !</p>
+              </Link>
+            </div>
+            {errorMsg && <p style={{color: "red"}}>{errorMsg}</p>}
           </form>
         </div>
       </div>

@@ -1,25 +1,21 @@
 .signup {
-  border: blue solid 1px;
-  .signup-form {
+  .register-form {
     display: flex;
     height: calc(100vh - 80px);
     justify-content: center;
     align-items: center;
-    // border: red solid 1px;
 
     form {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      //   border: 1px red solid;
       height: 80%;
       min-width: 500px;
 
       .input-card {
         width: 60%;
         height: 90%;
-        // border: 1px red solid;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -37,7 +33,6 @@
           height: 3rem;
           border: none;
           border-bottom: solid lightslategrey 1px;
-          //   border: solid red solid;
           margin: 0;
           padding: 0;
           box-sizing: border-box;
@@ -74,7 +69,7 @@
         }
       }
 
-      h2 {
+      h1 {
         text-align: center;
       }
     }

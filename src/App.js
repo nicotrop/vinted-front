@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 //Pages
 import Home from "./pages/Home";
@@ -27,11 +28,16 @@ library.add(faMagnifyingGlass);
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [newsSignup, setNewsSignup] = useState(false);
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(Cookies.get("token") || null)
+
+  const setUser = (token) => {
+    if (token) {
+      Cookies.set("token", token)
+    } else {
+      Cookies.remove("token");
+    }
+    setToken(token);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,23 +60,14 @@ function App() {
   ) : (
     <div className="App">
       <Router>
-        <Header {...library} />
+        <Header token={token} setUser={setUser} />
         <Routes>
           <Route path="/" element={<Home offers={data.offers} />} />
           <Route
             path="signup"
             element={
               <Signup
-                username={username}
-                setUsername={setUsername}
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                newsSignup={newsSignup}
-                setNewsSignup={setNewsSignup}
-                token={token}
-                setToken={setToken}
+                setUser={setUser}
               />
             }
           />
@@ -78,14 +75,7 @@ function App() {
             path="signin"
             element={
               <Signin
-                username={username}
-                setUsername={setUsername}
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                token={token}
-                setToken={setToken}
+                setUser={setUser}
               />
             }
           />

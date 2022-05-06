@@ -1,71 +1,57 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const Signup = () => {
+const Signup = ({setUser}) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsSignup, setNewsSignup] = useState(false);
-  const [token, setToken] = useState("");
+  const [errorMsg, setErrormsg] = useState("");
 
   const navigate = useNavigate();
 
-  const handleUsernameChange = (event) => {
-    const value = event.target.value;
-    setUsername(value);
-  };
+  //handle change functions
+  const handleUsernameChange = (event) =>  setUsername(event.target.value);
+  const handleEmailChange = (event) => setEmail(event.target.value);
+  const handlePasswordChange = (event) => setPassword(event.target.value);
+  const handleNewsletter = (event) => setNewsSignup(event.target.checked);
 
-  const handleEmailChange = (event) => {
-    const value = event.target.value;
-    setEmail(value);
-  };
-
-  const handlePasswordChange = (event) => {
-    const value = event.target.value;
-    setPassword(value);
-  };
-
-  const handleNewsletter = (event) => {
-    const value = event.target.checked;
-    setNewsSignup(value);
-  };
-
+  //handle submit function with setUser function & error handling
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setErrormsg("");
     const newBody = {
       email: email,
       username: username,
       password: password,
       newsletter: newsSignup,
     };
-
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
         newBody
       );
-
       if (response.data.token) {
         const newToken = response.data.token;
-        Cookies.set("token", newToken);
-        setToken(newToken);
+        setUser(newToken);
         navigate("/");
       }
     } catch (error) {
-      console.log(error.response);
+      console.log(error.response.data.message);
+      console.log(error.response.status);
+      console.log(error.response.statusText);
+      setErrormsg(error.response.data.message);
     }
   };
 
   return (
     <div className="signup">
       <div className="container">
-        <div className="signup-form">
+        <div className="register-form">
           <form onSubmit={handleSubmit}>
             <div className="input-card">
-              <h2>S'inscrire</h2>
+              <h1>S'inscrire</h1>
               <input
                 type="text"
                 name="username"
@@ -74,7 +60,7 @@ const Signup = () => {
                 onChange={handleUsernameChange}
               />
               <input
-                type="text"
+                type="email"
                 name="email"
                 value={email}
                 placeholder="Email"
@@ -98,6 +84,7 @@ const Signup = () => {
               </div>
               <input className="blue-btn" type="submit" value="S'inscrire" />
             </div>
+            {errorMsg && <p style={{color: "red"}}>{errorMsg}</p>}
           </form>
         </div>
       </div>

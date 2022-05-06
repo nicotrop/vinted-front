@@ -29,27 +29,42 @@ const Offer = () => {
     <div className="offer-body">
       <div className="container">
         <div className="offer-wrapper">
-          <img src={data.product_image.secure_url} alt="" />
+          <img
+            className="offer-product-img"
+            src={data.product_image.secure_url}
+            alt=""
+          />
           <div className="offer-details-wrapper">
-            <p>{data.product_price} €</p>
-            {/* {descriptionTab(data.product_details)} */}
-            {data.product_details.map((item, index) => {
-              const keys = Object.keys(item);
-              return (
-                <div key={index} className="offer-details-list">
-                  <span className="detail-name">{keys[0]}</span>
-                  <span className="detail-desc">{item[keys[0]]}</span>
-                </div>
-              );
-            })}
-            <p>{data.product_name}</p>
-            <p>{data.product_description}</p>
-            <img
-              className="user-avatar"
-              src={data.owner.account.avatar.secure_url}
-              alt=""
-            />
-            <span>{data.owner.account.username}</span>
+            <div className="offer-details-row-1">
+              <p className="offer-price">{data.product_price} €</p>
+              <div className="offer-details-details">
+                {data.product_details.map((item, index) => {
+                  const keys = Object.keys(item);
+                  return (
+                    <li key={index} className="offer-details-list">
+                      <span className="detail-name">{keys[0]}</span>
+                      <span className="detail-desc">{item[keys[0]]}</span>
+                    </li>
+                  );
+                })}
+              </div>
+              <div className="divider"></div>
+            </div>
+            <div className="offer-details-row-2">
+              <p className="offer-name">{data.product_name}</p>
+              <p className="offer-desc">{data.product_description}</p>
+              <div className="offer-details-avatar">
+                <img
+                  className="user-avatar"
+                  src={data.owner.account.avatar.secure_url}
+                  alt=""
+                />
+                <span>{data.owner.account.username}</span>
+              </div>
+            </div>
+            <div className="offer-details-row-3">
+              <button className="blue-btn">Acheter</button>
+            </div>
           </div>
         </div>
       </div>

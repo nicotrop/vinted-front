@@ -32,7 +32,7 @@ const Home = ({ offers }) => {
           <div className="home-offers-wrapper">
             {offers.map((offer, index) => {
               return (
-                <div className="home-offers-card" key={index}>
+                <div key={offer._id} className="home-offers-card">
                   <div className="offer-card-userbox">
                     {offer.owner.account.avatar && (
                       <img
@@ -52,7 +52,7 @@ const Home = ({ offers }) => {
                   </Link>
                   <p>{offer.product_price} €</p>
                   <div className="offer-description">
-                    {orderDetails(offer.product_details)}
+                    <p>{orderDetails(offer.product_details)}</p>
                   </div>
                 </div>
               );

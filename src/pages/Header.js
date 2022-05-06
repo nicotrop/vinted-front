@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({token, setUser}) => {
   return (
     <nav className="container">
       <ul className="nav-bar-list">
@@ -22,7 +22,7 @@ const Header = () => {
           </div>
         </div>
         <div className="nav-col-3">
-          <li>
+          {!token ?<><li>
             <Link to="signup">
               <button>s'inscrire</button>
             </Link>
@@ -31,7 +31,11 @@ const Header = () => {
             <Link to="signin">
               <button>se connecter</button>
             </Link>
-          </li>
+          </li></> :<li>
+              <button onClick={() => {
+                setUser(null);
+              }}>se deconnecter</button>
+          </li>}
           <li>
             <button className="blue-btn">vends tes articles</button>
           </li>

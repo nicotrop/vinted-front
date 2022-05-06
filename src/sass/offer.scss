@@ -1,6 +1,6 @@
 .offer-body {
   background-color: #eaedee;
-  height: 100vh;
+  height: calc(100vh - 80px);
   width: 100vw;
 
   p {
@@ -12,11 +12,11 @@
 }
 .offer-wrapper {
   width: 100%;
-  height: 600px;
-  border: red solid 1px;
+  height: 700px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   display: flex;
   justify-content: space-between;
-
   img {
     height: 100%;
     max-width: 60%;
@@ -34,21 +34,78 @@
   margin: 10px;
   padding: 10px;
   box-sizing: border-box;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-  .user-avatar {
-    height: 50px;
-    width: 50px;
-    min-width: 50px;
-    min-height: none;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  .offer-details-list {
+  .offer-details-row-1 {
+    height: calc(100% / 3);
     display: flex;
-    width: 100%;
-    .detail-name {
-      width: 50%;
+    flex-direction: column;
+    justify-content: space-between;
+    .offer-price {
+      font-size: 24px;
+      line-height: 32px;
+      color: #111;
+    }
+    .offer-details-details {
+      .offer-details-list {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        font-size: 14px;
+        .detail-name {
+          color: #999;
+          width: 50%;
+          margin-top: 3px;
+          margin-bottom: 3px;
+        }
+        .detail-desc {
+          width: 50%;
+          color: #666;
+          font-weight: 700;
+        }
+      }
+    }
+    .divider {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: rgba(17, 17, 17, 0.1);
+    }
+  }
+  .offer-details-row-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% / 3);
+    .offer-name {
+      font-weight: 700;
+      padding-top: 5%;
+    }
+    .offer-details-avatar {
+      display: flex;
+      align-items: center;
+
+      .user-avatar {
+        height: 50px;
+        width: 50px;
+        min-width: 50px;
+        min-height: none;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+  }
+  .offer-details-row-3 {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    button {
+      height: 40px;
     }
   }
 }
