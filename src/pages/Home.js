@@ -15,6 +15,11 @@ const Home = ({ offers }) => {
     return result;
   };
 
+  // const sortData = (tab) => {
+  //   const offers = tab.product_price.sort((a, b) => b - a);
+  //   console.log(offers);
+  // };
+
   return (
     <div>
       <div className="home-hero-img">
@@ -30,6 +35,7 @@ const Home = ({ offers }) => {
       <div>
         <div className="container">
           <div className="home-offers-wrapper">
+            {/* {isChecked && sortData(offers)}; */}
             {offers.map((offer, index) => {
               return (
                 <div key={offer._id} className="home-offers-card">

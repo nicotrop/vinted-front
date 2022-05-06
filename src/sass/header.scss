@@ -1,6 +1,6 @@
 nav {
   display: flex;
-  height: 80px;
+  height: 100px;
 
   .nav-bar-list {
     display: flex;
@@ -22,7 +22,8 @@ nav {
       width: 45%;
       height: 100%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: space-between;
 
       .input-wrapper {
         display: flex;
@@ -48,6 +49,46 @@ nav {
         textarea:focus,
         input:focus {
           outline: none;
+        }
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        border: red 1px solid;
+        margin-top: 5px;
+        span {
+          font-size: 12px;
+          margin-right: 5px;
+          margin-left: 5px;
+        }
+        label {
+          width: 30%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+        .slider {
+          height: 50px;
+          height: 100%;
+          width: 70%;
+          display: flex;
+          align-items: center;
+
+          span {
+            width: 20%;
+          }
+          .slider-wrapper {
+            box-sizing: border-box;
+            height: 100%;
+            width: 80%;
+            .slider-component-1 {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-wrap: "wrap";
+            }
+          }
         }
       }
     }

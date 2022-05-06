@@ -9,9 +9,9 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
+import Header from "./pages/Header";
 
 //Components
-import Header from "./components/Header";
 
 //CSS
 import "./App.css";
@@ -21,6 +21,7 @@ import "./sass/home.scss";
 import "./sass/offer.scss";
 import "./sass/signup.scss";
 import "./sass/signin.scss";
+import "./sass/Toggle.scss";
 
 //FontAwesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -31,6 +32,9 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState(Cookies.get("token") || null);
+  const [values, setValues] = useState([0, 180]);
+  const [isChecked, setIsChecked] = useState(false);
+  const [title, setTitle] = useState(" ");
 
   const setUser = (token) => {
     if (token) {
@@ -44,8 +48,10 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const sort = isChecked ? "price-desc" : "price-asc";
+        console.log(sort);
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
+          `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${sort}&title=${title}&priceMin=${values[0]}&priceMax=${values[1]}`
         );
         console.log(response.data);
         setData(response.data);
@@ -55,14 +61,22 @@ function App() {
       }
     };
     fetchData();
-  }, []);
+  }, [title, values, isChecked]);
 
   return isLoading ? (
     <p>En cours de chargement....</p>
   ) : (
     <div className="App">
       <Router>
-        <Header token={token} setUser={setUser} />
+        <Header
+          token={token}
+          setUser={setUser}
+          setValues={setValues}
+          values={values}
+          isChecked={isChecked}
+          setIsChecked={setIsChecked}
+          setTitle={setTitle}
+        />
         <Routes>
           <Route path="/" element={<Home offers={data.offers} />} />
           <Route path="signup" element={<Signup setUser={setUser} />} />
