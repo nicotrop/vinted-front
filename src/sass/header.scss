@@ -1,6 +1,6 @@
 nav {
   display: flex;
-  height: 100px;
+  height: 110px;
 
   .nav-bar-list {
     display: flex;
@@ -55,7 +55,6 @@ nav {
       .controls {
         display: flex;
         align-items: center;
-        border: red 1px solid;
         margin-top: 5px;
         span {
           font-size: 12px;

@@ -33,8 +33,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState(Cookies.get("token") || null);
   const [values, setValues] = useState([0, 180]);
-  const [isChecked, setIsChecked] = useState(false);
-  const [title, setTitle] = useState(" ");
+  const [isChecked, setIsChecked] = useState("price-asc");
+  const [title, setTitle] = useState("");
 
   const setUser = (token) => {
     if (token) {
@@ -48,12 +48,11 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const sort = isChecked ? "price-desc" : "price-asc";
-        console.log(sort);
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${sort}&title=${title}&priceMin=${values[0]}&priceMax=${values[1]}`
+          `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${isChecked}&title=${title}&priceMin=${values[0]}&priceMax=${values[1]}`
         );
         console.log(response.data);
+        console.log(isChecked);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {

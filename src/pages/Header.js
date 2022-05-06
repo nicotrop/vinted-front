@@ -43,7 +43,9 @@ const Header = ({
               <Toggle
                 defaultChecked={isChecked}
                 onChange={(event) => {
-                  setIsChecked(event.target.checked);
+                  const sortFilter =
+                    event.target.checked === true ? "price-desc" : "price-asc";
+                  setIsChecked(sortFilter);
                 }}
               />
             </label>
