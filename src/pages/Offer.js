@@ -14,6 +14,7 @@ const Offer = () => {
           `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
         );
         console.log(response.data);
+        console.log(response.data.owner.account.avatar.secure_url);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {}
@@ -54,11 +55,14 @@ const Offer = () => {
               <p className="offer-name">{data.product_name}</p>
               <p className="offer-desc">{data.product_description}</p>
               <div className="offer-details-avatar">
-                <img
-                  className="user-avatar"
-                  src={data.owner.account.avatar.secure_url}
-                  alt=""
-                />
+                {data.owner.account.avatar.secure_url && (
+                  <img
+                    className="user-avatar"
+                    src={data.owner.account.avatar.secure_url}
+                    alt=""
+                  />
+                )}
+
                 <span>{data.owner.account.username}</span>
               </div>
             </div>

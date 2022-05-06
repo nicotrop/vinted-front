@@ -35,7 +35,6 @@ const Home = ({ offers }) => {
       <div>
         <div className="container">
           <div className="home-offers-wrapper">
-            {/* {isChecked && sortData(offers)}; */}
             {offers.map((offer, index) => {
               return (
                 <div key={offer._id} className="home-offers-card">
