@@ -51,8 +51,6 @@ function App() {
         const response = await axios.get(
           `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${isChecked}&title=${title}&priceMin=${values[0]}&priceMax=${values[1]}`
         );
-        console.log(response.data);
-        console.log(isChecked);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {

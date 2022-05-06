@@ -13,8 +13,6 @@ const Offer = () => {
         const response = await axios.get(
           `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
         );
-        console.log(response.data);
-        console.log(response.data.owner.account.avatar.secure_url);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {}
@@ -23,9 +21,9 @@ const Offer = () => {
   }, [id]);
 
   return isLoading ? (
-    <p>
+    <>
       <p>En cours de chargement....</p>
-    </p>
+    </>
   ) : (
     <div className="offer-body">
       <div className="container">

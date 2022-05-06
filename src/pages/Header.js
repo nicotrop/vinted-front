@@ -41,7 +41,8 @@ const Header = ({
             <label>
               <span>Trier par prix : </span>
               <Toggle
-                defaultChecked={isChecked}
+                defaultChecked={false}
+                icons={{ checked: false, unchecked: false }}
                 onChange={(event) => {
                   const sortFilter =
                     event.target.checked === true ? "price-desc" : "price-asc";

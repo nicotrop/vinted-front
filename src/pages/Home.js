@@ -7,18 +7,13 @@ const Home = ({ offers }) => {
     const result = [];
     for (let i = 0; i < tab.length; i++) {
       if (tab[i].TAILLE) {
-        result.unshift(<p>{tab[i].TAILLE}</p>);
+        result.unshift(<p key={i}>{tab[i].TAILLE}</p>);
       } else if (tab[i].MARQUE) {
-        result.push(<p>{tab[i].MARQUE}</p>);
+        result.push(<p key={i}>{tab[i].MARQUE}</p>);
       }
     }
     return result;
   };
-
-  // const sortData = (tab) => {
-  //   const offers = tab.product_price.sort((a, b) => b - a);
-  //   console.log(offers);
-  // };
 
   return (
     <div>
@@ -57,7 +52,7 @@ const Home = ({ offers }) => {
                   </Link>
                   <p>{offer.product_price} €</p>
                   <div className="offer-description">
-                    <p>{orderDetails(offer.product_details)}</p>
+                    {orderDetails(offer.product_details)}
                   </div>
                 </div>
               );
