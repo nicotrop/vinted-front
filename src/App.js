@@ -10,6 +10,7 @@ import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Header from "./pages/Header";
+import Publish from "./pages/Publish";
 
 //Components
 
@@ -22,6 +23,7 @@ import "./sass/offer.scss";
 import "./sass/signup.scss";
 import "./sass/signin.scss";
 import "./sass/Toggle.scss";
+import "./sass/publish.scss";
 
 //FontAwesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -78,6 +80,7 @@ function App() {
           <Route path="/" element={<Home offers={data.offers} />} />
           <Route path="signup" element={<Signup setUser={setUser} />} />
           <Route path="signin" element={<Signin setUser={setUser} />} />
+          <Route path="publish" element={<Publish token={token} />} />
           <Route path="offer/:id" element={<Offer />}></Route>
         </Routes>
       </Router>

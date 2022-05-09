@@ -1,0 +1,11 @@
+.publish-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 50px;
+
+  *:not(span) {
+    margin-bottom: 10px;
+  }
+}

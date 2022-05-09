@@ -22,7 +22,7 @@ const Offer = () => {
 
   return isLoading ? (
     <>
-      <p>En cours de chargement....</p>
+      <p>En cours de chargement...</p>
     </>
   ) : (
     <div className="offer-body">

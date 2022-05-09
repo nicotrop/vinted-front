@@ -82,7 +82,9 @@ const Header = ({
             </li>
           )}
           <li>
-            <button className="blue-btn">vends tes articles</button>
+            <Link to="publish">
+              <button className="blue-btn">vends tes articles</button>
+            </Link>
           </li>
         </div>
       </ul>
