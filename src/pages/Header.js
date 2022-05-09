@@ -8,7 +8,6 @@ const Header = ({
   setUser,
   setValues,
   values,
-  isChecked,
   setIsChecked,
   setTitle,
 }) => {

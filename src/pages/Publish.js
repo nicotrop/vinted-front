@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+
 import "react-dropzone-uploader/dist/styles.css";
 // import Dropzone from "react-dropzone-uploader";
 
@@ -67,79 +68,94 @@ const Publish = () => {
     isLoading ? (
       <p>En chargement...</p>
     ) : (
-      <div>
+      <div className="publish-wrapper">
         <form className="publish-form" onSubmit={handleSubmit}>
-          <input
-            type="file"
-            name="Photo upload"
-            onChange={(event) => {
-              setImg(event.target.files[0]);
-              console.log(event.target.files[0]);
-            }}
-          />
-          <span>Titre</span>
-          <input
-            type="text"
-            name="Title"
-            value={title}
-            onChange={(event) => {
-              setTitle(event.target.value);
-            }}
-          />
-          <span>Décris ton article</span>
-          <input
-            type="text"
-            name="Description"
-            value={description}
-            onChange={(event) => {
-              setDescription(event.target.value);
-            }}
-          />
-          <span>Marque</span>
-          <input
-            type="text"
-            name="Brand"
-            value={brand}
-            onChange={(event) => {
-              setBrand(event.target.value);
-            }}
-          />
-          <span>Taille</span>
-          <input
-            type="text"
-            name="Size"
-            value={size}
-            onChange={(event) => {
-              setSize(event.target.value);
-            }}
-          />
-          <span>Couleur</span>
-          <input
-            type="text"
-            name="Color"
-            value={color}
-            onChange={(event) => {
-              setColor(event.target.value);
-            }}
-          />
-          <span>Etat</span>
-          <input
-            type="text"
-            name="Condition"
-            value={condition}
-            onChange={(event) => {
-              setCondition(event.target.value);
-            }}
-          />
-          <span>Lieu</span>
-          <input
-            type="text"
-            name="City"
-            value={city}
-            onChange={(event) => {
-              setCity(event.target.value);
-            }}
-          />
+          <h2>Vends ton article</h2>
+          <div className="img-upld-wrapper">
+            <div className="img-upld-container">
+              <input
+                type="file"
+                name="Photo upload"
+                onChange={(event) => {
+                  setImg(event.target.files[0]);
+                  console.log(event.target.files[0]);
+                }}
+              />
+            </div>
+          </div>
+          <div className="title-desc-wrapper">
+            <div className="publish-details-row-1">
+              <span>Titre</span>
+              <input
+                type="text"
+                name="Title"
+                value={title}
+                placeholder="ex: Chemise Sézane verte"
+                onChange={(event) => {
+                  setTitle(event.target.value);
+                }}
+              />
+            </div>
+            <div className="publish-details-row-2">
+              <span>Décris ton article</span>
+              <input
+                type="text"
+                name="Description"
+                placeholder="ex: Porté deux fois"
+                value={description}
+                onChange={(event) => {
+                  setDescription(event.target.value);
+                }}
+              />
+            </div>
+          </div>
+          <div className="publish-details-row-3">
+            <span>Marque</span>
+            <input
+              type="text"
+              name="Brand"
+              value={brand}
+              onChange={(event) => {
+                setBrand(event.target.value);
+              }}
+            />
+            <span>Taille</span>
+            <input
+              type="text"
+              name="Size"
+              value={size}
+              onChange={(event) => {
+                setSize(event.target.value);
+              }}
+            />
+            <span>Couleur</span>
+            <input
+              type="text"
+              name="Color"
+              value={color}
+              onChange={(event) => {
+                setColor(event.target.value);
+              }}
+            />
+            <span>Etat</span>
+            <input
+              type="text"
+              name="Condition"
+              value={condition}
+              onChange={(event) => {
+                setCondition(event.target.value);
+              }}
+            />
+            <span>Lieu</span>
+            <input
+              type="text"
+              name="City"
+              value={city}
+              onChange={(event) => {
+                setCity(event.target.value);
+              }}
+            />
+          </div>
           <span>Prix</span>
           <input
             type="text"
@@ -162,9 +178,7 @@ const Publish = () => {
       </div>
     )
   ) : (
-    setTimeout(() => {
-      navigate("/signin");
-    }, 1000)
+    <Navigate to="/signin" />
   );
 };
 
