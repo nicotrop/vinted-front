@@ -7,6 +7,8 @@ const Offer = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log(data);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,7 +55,7 @@ const Offer = () => {
               <p className="offer-name">{data.product_name}</p>
               <p className="offer-desc">{data.product_description}</p>
               <div className="offer-details-avatar">
-                {data.owner.account.avatar.secure_url && (
+                {data.owner.account.avatar && (
                   <img
                     className="user-avatar"
                     src={data.owner.account.avatar.secure_url}

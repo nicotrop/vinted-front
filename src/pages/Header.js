@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Slider from "../components/Slider";
 import Toggle from "react-toggle";
-// import { useState } from "react";
 
 const Header = ({
   token,
