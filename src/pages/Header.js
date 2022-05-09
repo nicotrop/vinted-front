@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Slider from "../components/Slider";
 import Toggle from "react-toggle";
+import { useLocation } from "react-router-dom";
 
 const Header = ({
   token,
@@ -11,6 +12,9 @@ const Header = ({
   setIsChecked,
   setTitle,
 }) => {
+  //location
+  const location = useLocation();
+
   return (
     <nav className="container">
       <ul className="nav-bar-list">
@@ -35,24 +39,28 @@ const Header = ({
               }}
             ></input>
           </div>
-          <div className="controls">
-            <label>
-              <span>Trier par prix : </span>
-              <Toggle
-                defaultChecked={false}
-                icons={{ checked: false, unchecked: false }}
-                onChange={(event) => {
-                  const sortFilter =
-                    event.target.checked === true ? "price-desc" : "price-asc";
-                  setIsChecked(sortFilter);
-                }}
-              />
-            </label>
-            <div className="slider">
-              <span>Prix entre :</span>
-              <Slider values={values} setValues={setValues} />
+          {location.pathname === "/" && (
+            <div className="controls">
+              <label>
+                <span>Trier par prix : </span>
+                <Toggle
+                  defaultChecked={false}
+                  icons={{ checked: false, unchecked: false }}
+                  onChange={(event) => {
+                    const sortFilter =
+                      event.target.checked === true
+                        ? "price-desc"
+                        : "price-asc";
+                    setIsChecked(sortFilter);
+                  }}
+                />
+              </label>
+              <div className="slider">
+                <span>Prix entre :</span>
+                <Slider values={values} setValues={setValues} />
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="nav-col-3">
           {!token ? (

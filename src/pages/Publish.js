@@ -8,7 +8,6 @@ import "react-dropzone-uploader/dist/styles.css";
 
 const Publish = () => {
   //States
-  const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [picture, setImg] = useState(null);
   const [description, setDescription] = useState("");
@@ -29,7 +28,6 @@ const Publish = () => {
   //handling submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
 
     const formData = new FormData();
 
@@ -55,7 +53,6 @@ const Publish = () => {
       );
       console.log(response.data);
       console.log(response.data._id);
-      setIsLoading(false);
       if (response.data) {
         navigate(`/offer/${response.data._id}`);
       }
@@ -65,118 +62,140 @@ const Publish = () => {
   };
 
   return token ? (
-    isLoading ? (
-      <p>En chargement...</p>
-    ) : (
-      <div className="publish-wrapper">
-        <form className="publish-form" onSubmit={handleSubmit}>
-          <h2>Vends ton article</h2>
-          <div className="img-upld-wrapper">
-            <div className="img-upld-container">
-              <input
-                type="file"
-                name="Photo upload"
-                onChange={(event) => {
-                  setImg(event.target.files[0]);
-                  console.log(event.target.files[0]);
-                }}
-              />
-            </div>
+    <div className="publish-wrapper">
+      <form className="publish-form" onSubmit={handleSubmit}>
+        <h2>Vends ton article</h2>
+        <div className="img-upld-wrapper">
+          <div className="img-upld-container">
+            <input
+              type="file"
+              name="Photo upload"
+              onChange={(event) => {
+                setImg(event.target.files[0]);
+                console.log(event.target.files[0]);
+              }}
+            />
           </div>
-          <div className="title-desc-wrapper">
-            <div className="publish-details-row-1">
-              <span>Titre</span>
-              <input
-                type="text"
-                name="Title"
-                value={title}
-                placeholder="ex: Chemise Sézane verte"
-                onChange={(event) => {
-                  setTitle(event.target.value);
-                }}
-              />
-            </div>
-            <div className="publish-details-row-2">
-              <span>Décris ton article</span>
-              <input
-                type="text"
-                name="Description"
-                placeholder="ex: Porté deux fois"
-                value={description}
-                onChange={(event) => {
-                  setDescription(event.target.value);
-                }}
-              />
-            </div>
+        </div>
+        <div className="title-desc-wrapper">
+          <div className="publish-details-row-1">
+            <span>Titre</span>
+            <input
+              type="text"
+              name="Title"
+              value={title}
+              placeholder="ex: Chemise Sézane verte"
+              onChange={(event) => {
+                setTitle(event.target.value);
+              }}
+            />
           </div>
-          <div className="publish-details-row-3">
+          <div className="publish-details-row-2">
+            <span>Décris ton article</span>
+            <input
+              type="text"
+              name="Description"
+              placeholder="ex: Porté deux fois"
+              value={description}
+              onChange={(event) => {
+                setDescription(event.target.value);
+              }}
+            />
+          </div>
+        </div>
+        <div className="publish-wrapper-3">
+          <div className="publish-details-box">
             <span>Marque</span>
             <input
               type="text"
               name="Brand"
+              placeholder="ex: Zara"
               value={brand}
               onChange={(event) => {
                 setBrand(event.target.value);
               }}
             />
+          </div>
+          <div className="publish-details-box">
             <span>Taille</span>
             <input
               type="text"
               name="Size"
               value={size}
+              placeholder="ex: L / 40 / 12"
               onChange={(event) => {
                 setSize(event.target.value);
               }}
             />
+          </div>
+          <div className="publish-details-box">
             <span>Couleur</span>
             <input
               type="text"
               name="Color"
+              placeholder="ex: Fushia"
               value={color}
               onChange={(event) => {
                 setColor(event.target.value);
               }}
             />
+          </div>
+          <div className="publish-details-box">
             <span>Etat</span>
             <input
               type="text"
               name="Condition"
+              placeholder="Neuf avec étiquette"
               value={condition}
               onChange={(event) => {
                 setCondition(event.target.value);
               }}
             />
+          </div>
+          <div className="publish-details-box">
             <span>Lieu</span>
             <input
               type="text"
               name="City"
+              placeholder="ex: Paris"
               value={city}
               onChange={(event) => {
                 setCity(event.target.value);
               }}
             />
           </div>
-          <span>Prix</span>
-          <input
-            type="text"
-            name="Price"
-            value={price}
-            onChange={(event) => {
-              setPrice(event.target.value);
-            }}
-          />
-          <input
-            type="checkbox"
-            value={exchange}
-            onChange={(event) => {
-              setExchange(event.target.checked);
-            }}
-          />
-          <span>Je suis intéressé(e) par les échanges</span>
-          <input type="submit" name="Publish offer" />
-        </form>
-      </div>
-    )
+        </div>
+        <div className="publish-wrapper-4">
+          <div className="publish-left-col">
+            <span>Prix</span>
+          </div>
+          <div className="publish-right-col">
+            <input
+              type="text"
+              name="Price"
+              placeholder="0,00 €"
+              value={price}
+              onChange={(event) => {
+                setPrice(event.target.value);
+              }}
+            />
+            <div className="right-col-checkbox">
+              <input
+                type="checkbox"
+                value={exchange}
+                onChange={(event) => {
+                  setExchange(event.target.checked);
+                }}
+              />
+              <span>Je suis intéressé(e) par les échanges</span>
+            </div>
+          </div>
+        </div>
+        <div className="btn-div">
+          <input className="blue-btn" type="submit" name="Publish offer" />
+        </div>
+      </form>
+    </div>
   ) : (
     <Navigate to="/signin" />
   );
