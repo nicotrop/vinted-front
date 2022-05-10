@@ -67,14 +67,19 @@ const Publish = () => {
         <h2>Vends ton article</h2>
         <div className="img-upld-wrapper">
           <div className="img-upld-container">
-            <input
-              type="file"
-              name="Photo upload"
-              onChange={(event) => {
-                setImg(event.target.files[0]);
-                console.log(event.target.files[0]);
-              }}
-            />
+            <label className="file-upload">
+              <span style={{ fontSize: 30 }}>+</span>{" "}
+              <span> Ajoute une photo</span>
+              <input
+                type="file"
+                name="Photo upload"
+                style={{ display: "none" }}
+                onChange={(event) => {
+                  setImg(event.target.files[0]);
+                  console.log(event.target.files[0]);
+                }}
+              />
+            </label>
           </div>
         </div>
         <div className="title-desc-wrapper">

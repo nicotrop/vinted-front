@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../sass/home.scss";
 import Offer from "./Offer";
 
-const Home = ({ offers }) => {
+const Home = ({ offers, page, setPage, limit }) => {
   const orderDetails = (tab) => {
     const result = [];
     for (let i = 0; i < tab.length; i++) {
@@ -23,7 +23,9 @@ const Home = ({ offers }) => {
             <span className="hero-img-text">
               Prêts à faire du tri dans vos placards ?
             </span>
-            <button className="blue-btn">Commencer à vendre</button>
+            <Link to="publish">
+              <button className="blue-btn">Commencer à vendre</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -57,6 +59,29 @@ const Home = ({ offers }) => {
                 </div>
               );
             })}
+            <div className="page-controls">
+              {page > 1 && (
+                <button
+                  onClick={() => {
+                    setPage((prevState) => prevState - 1);
+                    console.log(page);
+                  }}
+                >
+                  previous page
+                </button>
+              )}
+              {offers.length === limit && (
+                <button
+                  onClick={() => {
+                    setPage((prevState) => prevState + 1);
+                    console.log(page);
+                    console.log(offers.length);
+                  }}
+                >
+                  next page
+                </button>
+              )}
+            </div>
           </div>
         </div>
         ;

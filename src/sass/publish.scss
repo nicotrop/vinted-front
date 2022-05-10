@@ -6,7 +6,8 @@
     flex-direction: column;
     width: 70%;
     margin: 0 auto;
-    margin-top: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 
     *:not(span) {
       margin-bottom: 10px;
@@ -24,6 +25,39 @@
     .img-upld-container {
       border: dotted grey 1px;
       height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      label {
+        padding: 10px;
+        height: 55px;
+        border: #2cb1ba solid 1px;
+        color: #2cb1ba;
+        border-radius: 5px;
+        font-weight: 400;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span:nth-child(1) {
+          margin-right: 15px;
+          height: 100%;
+          display: flex;
+        }
+        span:nth-child(2) {
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      label:hover {
+        cursor: pointer;
+        color: white;
+        background-color: #2cb1ba;
+        font-weight: 600;
+      }
     }
 
     .title-desc-wrapper {
@@ -143,8 +177,13 @@
 
   input {
     margin-top: 10px;
+    width: 15%;
     border: none;
     border-radius: 2px;
     padding: 10px;
+  }
+  input:hover {
+    font-weight: 600;
+    cursor: pointer;
   }
 }

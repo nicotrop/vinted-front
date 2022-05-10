@@ -1,20 +1,24 @@
 import { Range, getTrackBackground } from "react-range";
+import { useState } from "react";
 
 const STEP = 5;
 const MIN = 0;
 const MAX = 500;
 
 const Slider = ({ rtl, values, setValues }) => {
+  const [fakeValue, setFakeValue] = useState([0, 100]);
+
   return (
     <div className="slider-wrapper">
       <div className="slide-component-1">
         <Range
-          values={values}
+          values={fakeValue}
           step={STEP}
           min={MIN}
           max={MAX}
           rtl={rtl}
-          onChange={(num) => setValues(num)}
+          onChange={(num) => setFakeValue(num)}
+          onFinalChange={(number) => setValues(number)}
           renderTrack={({ props, children }) => (
             <div
               onMouseDown={props.onMouseDown}
@@ -33,7 +37,7 @@ const Slider = ({ rtl, values, setValues }) => {
                   width: "100%",
                   borderRadius: "4px",
                   background: getTrackBackground({
-                    values,
+                    values: fakeValue,
                     colors: ["#ccc", "#2cb1ba", "#ccc"],
                     min: MIN,
                     max: MAX,
@@ -76,7 +80,7 @@ const Slider = ({ rtl, values, setValues }) => {
                   textAlign: "center",
                 }}
               >
-                {values[index].toFixed(0)} €
+                {fakeValue[index].toFixed(0)} €
               </div>
               <div
                 style={{

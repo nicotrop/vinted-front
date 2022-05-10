@@ -11,6 +11,7 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Header from "./pages/Header";
 import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 
 //Components
 
@@ -24,6 +25,7 @@ import "./sass/signup.scss";
 import "./sass/signin.scss";
 import "./sass/Toggle.scss";
 import "./sass/publish.scss";
+import "./sass/payment.scss";
 
 //FontAwesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -37,6 +39,8 @@ function App() {
   const [values, setValues] = useState([0, 180]);
   const [isChecked, setIsChecked] = useState("price-asc");
   const [title, setTitle] = useState("");
+  const [page, setPage] = useState(1);
+  const [limit] = useState(10);
 
   const setUser = (token) => {
     if (token) {
@@ -51,16 +55,17 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${isChecked}&title=${title}&priceMin=${values[0]}&priceMax=${values[1]}`
+          `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${isChecked}&limit=${limit}&page=${page}&title=${title}&priceMin=${values[0]}&priceMax=${values[1]}`
         );
         setData(response.data);
         setIsLoading(false);
+        console.log(response.data);
       } catch (error) {
         alert(error.response);
       }
     };
     fetchData();
-  }, [title, values, isChecked]);
+  }, [title, values, isChecked, page, limit]);
 
   return isLoading ? (
     <p>En cours de chargement....</p>
@@ -77,11 +82,22 @@ function App() {
           setTitle={setTitle}
         />
         <Routes>
-          <Route path="/" element={<Home offers={data.offers} />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                offers={data.offers}
+                page={page}
+                setPage={setPage}
+                limit={limit}
+              />
+            }
+          />
           <Route path="signup" element={<Signup setUser={setUser} />} />
           <Route path="signin" element={<Signin setUser={setUser} />} />
           <Route path="publish" element={<Publish token={token} />} />
           <Route path="offer/:id" element={<Offer />}></Route>
+          <Route path="payment" element={<Payment />}></Route>
         </Routes>
       </Router>
     </div>

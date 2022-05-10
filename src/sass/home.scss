@@ -51,7 +51,7 @@
       height: 40px;
       align-items: center;
       padding: 5px;
-      
+
       p {
         font-size: 14px;
         padding-left: 3px;
@@ -59,15 +59,15 @@
       }
 
       .avatar {
-      height: 25px;
-      width: 25px;
-      min-height: none;
-      object-fit: cover;
-      border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        min-height: none;
+        object-fit: cover;
+        border-radius: 50%;
       }
     }
 
-    .offer-description{
+    .offer-description {
       font-size: 12px;
       color: #999;
       margin-top: 5px;
@@ -82,7 +82,24 @@
       width: 100%;
       object-fit: cover;
       border: solid honeydew 1px;
-      margin-bottom: 0.70rem;
+      margin-bottom: 0.7rem;
     }
+  }
+}
+
+.page-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 120px;
+    height: 40px;
+    margin: 10px;
+  }
+  button:hover {
+    background-color: #2cb1ba;
+    color: white;
+    font-weight: 600;
   }
 }
