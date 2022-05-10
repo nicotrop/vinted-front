@@ -3,10 +3,11 @@ import axios from "axios";
 
 const CheckoutForm = ({
   userID,
-  description,
+  title,
   total,
-  complete,
   setComplete,
+  setErrorMsg,
+  errorMsg,
 }) => {
   const stripe = useStripe();
 
@@ -22,17 +23,21 @@ const CheckoutForm = ({
     const stripeToken = stripeResponse.token.id;
 
     try {
-      const response = await axios.post(" http://localhost:4000/payment", {
-        stripeToken,
-        description,
-        total,
-      });
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/payment",
+        {
+          token: stripeToken,
+          title,
+          amount: total,
+        }
+      );
       console.log(response.data);
       if (response.data.status === "succeeded") {
         setComplete(true);
       }
     } catch (error) {
       console.log(error);
+      setErrorMsg(error.message);
     }
   };
 
@@ -43,6 +48,11 @@ const CheckoutForm = ({
         <button type="submit" className="blue-btn">
           Pay
         </button>
+        {errorMsg && (
+          <p style={{ color: "red", textAlign: "center", fontSize: "14px" }}>
+            {errorMsg}
+          </p>
+        )}
       </form>
     </>
   );

@@ -9,15 +9,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CheckoutForm from "../components/CheckoutForm";
 
 const stripePromise = loadStripe(
-  "pk_test_51JwqGrHYGNStC4tECXJ2Racovtc29nA8s9hqP4KUSKTbyX3ciZXL9jsrbwXULjQZUEkoflCkoYiExPwpLGxt5clP00z5BoAPnS"
+  "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
 );
 
 const Payment = () => {
   const navigate = useNavigate();
   const [complete, setComplete] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const token = Cookies.get("token");
   const location = useLocation();
-  const { name, price, userID, description } = location.state;
+  const { name, price, userID, title } = location.state;
   console.log(location.state);
   const buyersProtection = price * 0.1;
   const shipping = price * 0.2;
@@ -28,58 +29,70 @@ const Payment = () => {
   ) : !location ? (
     <Navigate to="/" />
   ) : (
-    <div className="container bg-gray">
-      {complete ? (
-        <div className="payment-form">
-          <div className="main-form-container">
-            <div className="payment-page">
-              <h1>Paiement effectué</h1>
-              <FontAwesomeIcon icon="check" />
-              {/* {setTimeout(() => {
+    <div className="bg-gray">
+      <div className="container">
+        {complete ? (
+          <div className="payment-form">
+            <div className="main-form-container">
+              <div className="payment-page">
+                <h1>Paiement effectué</h1>
+                <div className="circle">
+                  <div className="icon-check">
+                    <FontAwesomeIcon icon="check" size="lg" />
+                  </div>
+                </div>
+                {setTimeout(() => {
                   navigate("/");
-                }, 1000)} */}
+                }, 1000)}
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="payment-form">
-          <div className="main-form-container">
-            <p>Résumé de la commande</p>
-            <p>
-              <span>Commande </span>
-              <span>{price.toFixed(2)} €</span>
-            </p>
-            <p>
-              <span>Frais protection acheteurs </span>
-              <span>{buyersProtection.toFixed(2)} €</span>
-            </p>
-            <p className="">
-              <span>Frais de port </span>
-              <span>{shipping.toFixed(2)} €</span>
-            </p>
-            <p className="">
-              <span>Total </span>
-              <span>{total.toFixed(2)} €</span>
-            </p>
-            <p>
-              Il ne vous reste plus qu'un étape pour vous offrir {name}. Vous
-              allez payer {total.toFixed(2)} euros (frais de protection et frais
-              de port inclus)
-            </p>
-            <div className="stripe-card-element">
-              <Elements stripe={stripePromise}>
-                <CheckoutForm
-                  userID={userID}
-                  total={total}
-                  description={description}
-                  setComplete={setComplete}
-                  complete={complete}
-                />
-              </Elements>
+        ) : (
+          <div className="payment-form">
+            <div className="main-form-container">
+              <p className="title">Résumé de la commande</p>
+              <ul>
+                <li className="payment-list">
+                  <span>Commande </span>
+                  <span>{price.toFixed(2)} €</span>
+                </li>
+                <li className="payment-list">
+                  <span>Frais protection acheteurs </span>
+                  <span>{buyersProtection.toFixed(2)} €</span>
+                </li>
+                <li className="payment-list">
+                  <span>Frais de port </span>
+                  <span>{shipping.toFixed(2)} €</span>
+                </li>
+                <li className="payment-list">
+                  <h3>Total </h3>
+                  <h3>{total.toFixed(2)} €</h3>
+                </li>
+              </ul>
+              <div className="border"></div>
+              <p>
+                Il ne vous reste plus qu'un étape pour vous offrir{" "}
+                <span className="bold">{name}</span>. Vous allez payer{" "}
+                <span className="bold">{total.toFixed(2)}</span> euros (frais de
+                protection et frais de port inclus)
+              </p>
+              <div className="border"></div>
+              <div className="stripe-card-element">
+                <Elements stripe={stripePromise}>
+                  <CheckoutForm
+                    userID={userID}
+                    total={total}
+                    title={title}
+                    setComplete={setComplete}
+                    setErrorMsg={setErrorMsg}
+                    errorMsg={errorMsg}
+                  />
+                </Elements>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
