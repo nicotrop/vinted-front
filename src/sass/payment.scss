@@ -1,19 +1,40 @@
+.bg-gray {
+  background-color: #eaedee;
+  height: 100vh;
+}
+
 .payment-form {
   width: 100%;
-  height: 90vh;
+  height: 100%;
   padding: 24px;
-  border: red solid 1px;
   display: flex;
   justify-content: center;
   align-items: center;
-  form {
+  .main-form-container {
     height: 100%;
     width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: 30px;
-    border: red solid 1px;
     padding: 24px;
+    background-color: white;
+    .payment-page {
+      text-align: center;
+    }
+  }
+  .stripe-form {
+    height: 10%;
+    button {
+      margin-top: 20px;
+    }
+  }
+
+  .stripe-card-element {
+    height: 100px;
+    button {
+      margin-top: 30px;
+      width: 100%;
+    }
   }
 }

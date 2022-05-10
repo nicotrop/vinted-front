@@ -8,8 +8,6 @@ const Offer = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(data);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -70,7 +68,12 @@ const Offer = () => {
             <div className="offer-details-row-3">
               <Link
                 to="/payment"
-                state={{ price: data.product_price, name: data.product_name }}
+                state={{
+                  price: data.product_price,
+                  name: data.product_name,
+                  userID: data.owner._id,
+                  description: data.product_description,
+                }}
               >
                 <button className="blue-btn">Acheter</button>
               </Link>
