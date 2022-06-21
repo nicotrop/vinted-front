@@ -55,9 +55,11 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${isChecked}&limit=${limit}&page=${page}&title=${title}&priceMin=${values[0]}&priceMax=${values[1]}`
+          // `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${isChecked}&limit=${limit}&page=${page}&title=${title}&priceMin=${values[0]}&priceMax=${values[1]}`
+          `http://localhost:4000/offer?sort=${isChecked}&limit=${limit}&page=${page}&title=${title}&priceMin=${values[0]}&priceMax=${values[1]}`
         );
         setData(response.data);
+        console.log(response.data);
         setIsLoading(false);
         console.log(response.data);
       } catch (error) {
@@ -85,12 +87,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Home
-                offers={data.offers}
-                page={page}
-                setPage={setPage}
-                limit={limit}
-              />
+              <Home offers={data} page={page} setPage={setPage} limit={limit} />
             }
           />
           <Route path="signup" element={<Signup setUser={setUser} />} />

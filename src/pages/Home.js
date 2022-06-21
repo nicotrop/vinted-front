@@ -39,7 +39,7 @@ const Home = ({ offers, page, setPage, limit }) => {
                     {offer.owner.account.avatar && (
                       <img
                         className="avatar"
-                        src={offers[index].owner.account.avatar.secure_url}
+                        src={offer.owner.account.avatar}
                         alt="user-img"
                       />
                     )}
@@ -48,7 +48,7 @@ const Home = ({ offers, page, setPage, limit }) => {
                   <Link to={`offer/${offer._id}`} element={<Offer />}>
                     <img
                       className="product-img"
-                      src={offer.product_image.secure_url}
+                      src={offer.product_image}
                       alt={offer.product_name}
                     />
                   </Link>

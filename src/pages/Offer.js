@@ -12,7 +12,8 @@ const Offer = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+          // `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+          `http://localhost:4000/offer/${id}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -29,11 +30,7 @@ const Offer = () => {
     <div className="offer-body">
       <div className="container">
         <div className="offer-wrapper">
-          <img
-            className="offer-product-img"
-            src={data.product_image.secure_url}
-            alt=""
-          />
+          <img className="offer-product-img" src={data.product_image} alt="" />
           <div className="offer-details-wrapper">
             <div className="offer-details-row-1">
               <p className="offer-price">{data.product_price} €</p>
@@ -57,7 +54,7 @@ const Offer = () => {
                 {data.owner.account.avatar && (
                   <img
                     className="user-avatar"
-                    src={data.owner.account.avatar.secure_url}
+                    src={data.owner.account.avatar}
                     alt=""
                   />
                 )}
