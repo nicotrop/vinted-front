@@ -1,5 +1,6 @@
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
+// import { useState } from "react";
 
 const CheckoutForm = ({
   userID,
@@ -10,8 +11,9 @@ const CheckoutForm = ({
   errorMsg,
 }) => {
   const stripe = useStripe();
-
   const elements = useElements();
+
+  // const [completed, setCompleted] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

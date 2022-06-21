@@ -8,6 +8,9 @@ const Offer = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log(process.env.REACT_APP_PUBLIC_KEY);
+  console.log(process.env.NODE_ENV);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -5,9 +5,11 @@ import { useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import "dotenv/config";
 
 import CheckoutForm from "../components/CheckoutForm";
 
+// console.log(process.env.PUBLIC_KEY);
 const stripePromise = loadStripe(process.env.PUBLIC_KEY);
 
 const Payment = () => {
